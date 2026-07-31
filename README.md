@@ -1,8 +1,8 @@
-' Calcul du total directement en VBA (indépendant du recalcul Excel)
 For c = firstMonthCol To nbCols
     Dim totalVal As Double
-    totalVal = Application.WorksheetFunction.Sum( _
-        shDest.Range(shDest.Cells(firstDataRow, c), shDest.Cells(lastDataRow, c)))
+    totalVal = Application.WorksheetFunction.Round( _
+        Application.WorksheetFunction.Sum( _
+            shDest.Range(shDest.Cells(firstDataRow, c), shDest.Cells(lastDataRow, c))), 2)
     
     If totalVal >= 7.2 And totalVal <= 7.5 Then
         shDest.Cells(summaryRow, c).Font.Color = RGB(0, 160, 80)
