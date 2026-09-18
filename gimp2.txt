@@ -1,0 +1,19 @@
+(let* ((files (cadr (file-glob "C:/chemin/vers/dossier/*.png" 1)))) (while (not (null? files)) (let* ((filename (car files)) (image (car (gimp-file-load RUN-NONINTERACTIVE filename filename))) (drawable (car (gimp-image-get-active-drawable image)))) (plug-in-autocrop RUN-NONINTERACTIVE image drawable) (gimp-image-flatten image) (file-png-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) filename filename 0 9 1 1 1 1 1)) (set! files (cdr files))))
+
+(let* ((files (cadr (file-glob "C:/chemin/vers/dossier/*.png" 1)))) (while (not (null? files)) (let* ((filename (car files)) (image (car (gimp-file-load RUN-NONINTERACTIVE filename filename)))) (gimp-image-crop image LARGEUR HAUTEUR X_OFFSET Y_OFFSET) (gimp-image-flatten image) (file-png-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) filename filename 0 9 1 1 1 1 1)) (set! files (cdr files))))
+
+Cla
+(let* ((files (cadr (file-glob "D:/Screenshot_*.jpg" 1)))) (while (not (null? files)) (let* ((filename (car files))) (display filename) (newline) (let* ((image (car (gimp-file-load RUN-NONINTERACTIVE filename filename)))) (gimp-image-crop image 1845 900 75 180) (gimp-image-flatten image) (file-png-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) filename filename 0 9 1 1 1 1 1) (gimp-image-delete image))) (set! files (cdr files))))
+
+Gem
+(let* ((glob-result (file-glob "C:/Users/EXT-BERGEB/Desktop/2026_09_18_screenshots_euronext/*.jpg" 1))
+       (count (car glob-result))
+       (files (cadr glob-result)))
+  (while (not (null? files))
+    (let* ((filename (car files))
+           (image (car (gimp-file-load RUN-NONINTERACTIVE filename filename))))
+      (gimp-image-crop image 1845 900 75 180)
+      (gimp-image-flatten image)
+      (file-png-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) filename filename 0 9 1 1 1 1 1)
+      (gimp-image-delete image)
+      (set! files (cdr files)))))
